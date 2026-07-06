@@ -42,7 +42,7 @@ server {
     location ~ /\.git { deny all; }
 }
 NGINXEOF
-[ -n "$ln_target" ] && ln -sf "$CONF" "$ln_target"
+if [ -n "$ln_target" ]; then ln -sf "$CONF" "$ln_target"; fi
 nginx -t
 systemctl reload nginx 2>/dev/null || service nginx reload
 
